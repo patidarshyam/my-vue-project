@@ -1,6 +1,6 @@
 ======
 =============
-<template>
+
   <div>
     <div>
       <!-- Code for the disabled input fields -->
@@ -100,7 +100,7 @@
       </table>
     </div>
   </div>
-</template>
+
 
 <script>
 export default {
