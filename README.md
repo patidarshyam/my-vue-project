@@ -1,4 +1,3 @@
-# my-vue-project:
 <template>
   <div>
     <h2>Employees</h2>
@@ -54,7 +53,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="employee in employees" :key="employee.id">
+          <tr v-for="employee in filteredEmployees" :key="employee.id">
             <td>{{ employee.employeeNumber }}</td>
             <td>{{ employee.employeeName }}</td>
             <td>{{ employee.lastName }}</td>
@@ -85,7 +84,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="adminEmployee in adminEmployees" :key="adminEmployee.id">
+          <tr v-for="adminEmployee in filteredAdminEmployees" :key="adminEmployee.id">
             <td>{{ adminEmployee.employeeNumber }}</td>
             <td>{{ adminEmployee.employeeName }}</td>
             <td>{{ adminEmployee.lastName }}</td>
