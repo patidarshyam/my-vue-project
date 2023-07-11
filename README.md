@@ -1,39 +1,39 @@
 <template>
   <div>
-    <h2>Employees</h2>
-    <div class="form-container">
+    <div>
+      <!-- Code for the disabled input fields -->
       <label for="domain">Domain:</label>
-      <input id="domain" v-model="employee.domain" disabled>
+      <input id="domain" :value="employee.domain" disabled>
 
       <label for="group">Group:</label>
-      <input id="group" v-model="employee.group" disabled>
+      <input id="group" :value="employee.group" disabled>
 
       <label for="division">Division:</label>
-      <input id="division" v-model="employee.division" disabled>
+      <input id="division" :value="employee.division" disabled>
 
       <label for="area">Area:</label>
-      <input id="area" v-model="employee.area" disabled>
+      <input id="area" :value="employee.area" disabled>
 
       <label for="district">District:</label>
-      <input id="district" v-model="employee.district" disabled>
+      <input id="district" :value="employee.district" disabled>
 
       <label for="citySalesManager">City Sales Manager:</label>
-      <input id="citySalesManager" v-model="employee.citySalesManager" disabled>
+      <input id="citySalesManager" :value="employee.citySalesManager" disabled>
 
       <label for="zone">Zone:</label>
-      <input id="zone" v-model="employee.zone" disabled>
+      <input id="zone" :value="employee.zone" disabled>
 
       <label for="specialRoles">Special Roles:</label>
-      <input id="specialRoles" v-model="employee.specialRoles" disabled>
+      <input id="specialRoles" :value="employee.specialRoles" disabled>
 
       <label for="type">Type:</label>
-      <input id="type" v-model="employee.type" disabled>
+      <input id="type" :value="employee.type" disabled>
 
       <label for="status">Status:</label>
-      <input id="status" v-model="employee.status" disabled>
+      <input id="status" :value="employee.status" disabled>
 
       <label for="category">Category:</label>
-      <input id="category" v-model="employee.category" disabled>
+      <input id="category" :value="employee.category" disabled>
     </div>
 
     <h2>Employees</h2>
@@ -105,19 +105,22 @@ export default {
   data() {
     return {
       employee: {
-        domain: 'Domain Value',
-        group: 'Group Value',
-        division: 'Division Value',
-        area: 'Area Value',
-        district: 'District Value',
-        citySalesManager: 'City Sales Manager Value',
-        zone: 'Zone Value',
-        specialRoles: 'Special Roles Value',
-        type: 'Type Value',
-        status: 'Status Value',
-        category: 'Category Value'
+        domain: 'Sample Domain',
+        group: 'Sample Group',
+        division: 'Sample Division',
+        area: 'Sample Area',
+        district: 'Sample District',
+        citySalesManager: 'Sample City Sales Manager',
+        zone: 'Sample Zone',
+        specialRoles: 'Sample Special Roles',
+        type: 'Sample Type',
+        status: 'Sample Status',
+        category: 'Sample Category'
       },
+      searchText: '',
+      adminSearchText: '',
       employees: [
+        // Dummy employee data
         {
           id: 1,
           employeeNumber: '001',
@@ -127,7 +130,7 @@ export default {
           effectiveDate: '2022-01-01',
           expirationDate: '2022-12-31',
           empPayrollStatus: 'Active',
-          jobTitle: 'Manager'
+          jobTitle: 'Developer'
         },
         {
           id: 2,
@@ -135,84 +138,35 @@ export default {
           employeeName: 'Jane Smith',
           lastName: 'Smith',
           firstName: 'Jane',
-          effectiveDate: '2022-02-01',
-          expirationDate: '2022-11-30',
+          effectiveDate: '2022-01-01',
+          expirationDate: '2022-12-31',
           empPayrollStatus: 'Active',
-          jobTitle: 'Developer'
+          jobTitle: 'Designer'
         }
-      ],
-      searchText: '',
-      adminEmployees: [],
-      adminSearchText: ''
+      ]
     };
   },
   computed: {
     filteredEmployees() {
-      if (this.searchText) {
-        return this.employees.filter((employee) =>
-          employee.employeeName.toLowerCase().includes(this.searchText.toLowerCase())
-        );
-      } else {
-        return this.employees;
-      }
+      // Filter employees based on search text
+      return this.employees.filter(employee =>
+        employee.employeeName.toLowerCase().includes(this.searchText.toLowerCase())
+      );
     },
     filteredAdminEmployees() {
-      if (this.adminSearchText) {
-        return this.adminEmployees.filter((employee) =>
-          employee.employeeName.toLowerCase().includes(this.adminSearchText.toLowerCase())
-        );
-      } else {
-        return this.adminEmployees;
-      }
+      // Filter admin override employees based on search text
+      return this.employees.filter(employee =>
+        employee.employeeName.toLowerCase().includes(this.adminSearchText.toLowerCase())
+      );
     }
-  },
-  methods: {
-    fetchAdminEmployees() {
-      // Call the API to fetch admin employees data
-      // Assign the response data to the adminEmployees array
-      this.adminEmployees = [
-        {
-          id: 3,
-          employeeNumber: '003',
-          employeeName: 'Admin Employee 1',
-          lastName: 'Employee 1',
-          firstName: 'Admin',
-          effectiveDate: '2022-03-01',
-          expirationDate: '2022-10-31',
-          empPayrollStatus: 'Active',
-          jobTitle: 'Admin Role'
-        },
-        {
-          id: 4,
-          employeeNumber: '004',
-          employeeName: 'Admin Employee 2',
-          lastName: 'Employee 2',
-          firstName: 'Admin',
-          effectiveDate: '2022-04-01',
-          expirationDate: '2022-09-30',
-          empPayrollStatus: 'Active',
-          jobTitle: 'Admin Role'
-        }
-      ];
-    }
-  },
-  created() {
-    // Fetch admin employees data when the component is created
-    this.fetchAdminEmployees();
   }
 };
 </script>
 
 <style>
-.form-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
+/* Add your styles here */
 .table-container {
-  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 table {
@@ -220,14 +174,17 @@ table {
   border-collapse: collapse;
 }
 
-table th,
-table td {
-  padding: 10px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
+th,
+td {
+  padding: 8px;
+  border: 1px solid #ddd;
 }
 
-input {
-  padding: 5px;
+input[type="text"] {
+  margin-bottom: 10px;
+  padding: 4px;
+  width: 200px;
 }
+
+/* Add any additional styles as needed */
 </style>
