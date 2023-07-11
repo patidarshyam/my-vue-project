@@ -3,37 +3,37 @@
     <div>
       <!-- Code for the disabled input fields -->
       <label for="domain">Domain:</label>
-      <input id="domain" :value="employee.domain" disabled>
+      <input id="domain" v-model="employee.domain" disabled>
 
       <label for="group">Group:</label>
-      <input id="group" :value="employee.group" disabled>
+      <input id="group" v-model="employee.group" disabled>
 
       <label for="division">Division:</label>
-      <input id="division" :value="employee.division" disabled>
+      <input id="division" v-model="employee.division" disabled>
 
       <label for="area">Area:</label>
-      <input id="area" :value="employee.area" disabled>
+      <input id="area" v-model="employee.area" disabled>
 
       <label for="district">District:</label>
-      <input id="district" :value="employee.district" disabled>
+      <input id="district" v-model="employee.district" disabled>
 
       <label for="citySalesManager">City Sales Manager:</label>
-      <input id="citySalesManager" :value="employee.citySalesManager" disabled>
+      <input id="citySalesManager" v-model="employee.citySalesManager" disabled>
 
       <label for="zone">Zone:</label>
-      <input id="zone" :value="employee.zone" disabled>
+      <input id="zone" v-model="employee.zone" disabled>
 
       <label for="specialRoles">Special Roles:</label>
-      <input id="specialRoles" :value="employee.specialRoles" disabled>
+      <input id="specialRoles" v-model="employee.specialRoles" disabled>
 
       <label for="type">Type:</label>
-      <input id="type" :value="employee.type" disabled>
+      <input id="type" v-model="employee.type" disabled>
 
       <label for="status">Status:</label>
-      <input id="status" :value="employee.status" disabled>
+      <input id="status" v-model="employee.status" disabled>
 
       <label for="category">Category:</label>
-      <input id="category" :value="employee.category" disabled>
+      <input id="category" v-model="employee.category" disabled>
     </div>
 
     <h2>Employees</h2>
@@ -105,17 +105,17 @@ export default {
   data() {
     return {
       employee: {
-        domain: 'Sample Domain',
-        group: 'Sample Group',
-        division: 'Sample Division',
-        area: 'Sample Area',
-        district: 'Sample District',
-        citySalesManager: 'Sample City Sales Manager',
-        zone: 'Sample Zone',
-        specialRoles: 'Sample Special Roles',
-        type: 'Sample Type',
-        status: 'Sample Status',
-        category: 'Sample Category'
+        domain: '',
+        group: '',
+        division: '',
+        area: '',
+        district: '',
+        citySalesManager: '',
+        zone: '',
+        specialRoles: '',
+        type: '',
+        status: '',
+        category: ''
       },
       searchText: '',
       adminSearchText: '',
