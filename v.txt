@@ -7,70 +7,132 @@
       <div class="card-body">
         <div class="row">
           <div class="col-md-6">
-            <div v-for="(value, label) in employeeDetails" :key="label" class="form-group">
-              <label :for="label">{{ label }}:</label>
-              <input :id="label" :value="value" disabled class="form-control">
+            <div class="form-group row">
+              <label for="domain" class="col-sm-4 col-form-label text-right">Domain:</label>
+              <div class="col-sm-8">
+                <input id="domain" :value="employeeDetails.domain" disabled class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="group" class="col-sm-4 col-form-label text-right">Group:</label>
+              <div class="col-sm-8">
+                <input id="group" :value="employeeDetails.group" disabled class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="division" class="col-sm-4 col-form-label text-right">Division:</label>
+              <div class="col-sm-8">
+                <input id="division" :value="employeeDetails.division" disabled class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="area" class="col-sm-4 col-form-label text-right">Area:</label>
+              <div class="col-sm-8">
+                <input id="area" :value="employeeDetails.area" disabled class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="type" class="col-sm-4 col-form-label text-right">Type:</label>
+              <div class="col-sm-8">
+                <input id="type" :value="employeeDetails.type" disabled class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="category" class="col-sm-4 col-form-label text-right">Category:</label>
+              <div class="col-sm-8">
+                <input id="category" :value="employeeDetails.category" disabled class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label for="district" class="col-sm-4 col-form-label text-right">District:</label>
+              <div class="col-sm-8">
+                <input id="district" :value="employeeDetails.district" disabled class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="citySalesManager" class="col-sm-4 col-form-label text-right">City Sales Manager:</label>
+              <div class="col-sm-8">
+                <input id="citySalesManager" :value="employeeDetails.citySalesManager" disabled class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="zone" class="col-sm-4 col-form-label text-right">Zone:</label>
+              <div class="col-sm-8">
+                <input id="zone" :value="employeeDetails.zone" disabled class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="specialRoles" class="col-sm-4 col-form-label text-right">Special Roles:</label>
+              <div class="col-sm-8">
+                <input id="specialRoles" :value="employeeDetails.specialRoles" disabled class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="status" class="col-sm-4 col-form-label text-right">Status:</label>
+              <div class="col-sm-8">
+                <input id="status" :value="employeeDetails.status" disabled class="form-control">
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-       
-    <div class="table-container">
-      <div class="d-flex justify-content-between align-items-center mb-2">
-        <div class="row">
-          <div class="col-md-4">
-            <h4>Employees</h4>
-          </div>
-          <div class="col-md-4">
-            <div class="input-group">
-              <input v-model="searchText" placeholder="Search" class="form-control form-control-sm">
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="pagination-details">
-              Page {{ currentPage }} of {{ totalPages }} ({{ totalItems }} items)
-            </div>
+
+    <div class="table-container mt-4">
+      <div class="row">
+        <div class="col-md-4">
+          <h4>Employees</h4>
+        </div>
+        <div class="col-md-4">
+          <div class="pagination-details">
+            Page {{ currentPage }} of {{ totalPages }} ({{ totalItems }} items)
           </div>
         </div>
       </div>
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>Employee Number</th>
-            <th>Employee Name</th>
-            <th>Last Name</th>
-            <th>First Name</th>
-            <th>Effective Date</th>
-            <th>Expiration Date</th>
-            <th>Emp Payroll Status</th>
-            <th>Job Title</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="employee in filteredEmployees" :key="employee.id">
-            <td>{{ employee.employeeNumber }}</td>
-            <td>{{ employee.employeeName }}</td>
-            <td>{{ employee.lastName }}</td>
-            <td>{{ employee.firstName }}</td>
-            <td>{{ employee.effectiveDate }}</td>
-            <td>{{ employee.expirationDate }}</td>
-            <td>{{ employee.empPayrollStatus }}</td>
-            <td>{{ employee.jobTitle }}</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <nav v-if="totalPages > 1">
-        <ul class="pagination justify-content-center">
-          <li class="page-item" :class="{ disabled: currentPage === 1 }">
-            <a class="page-link" href="#" @click="prevPage">Previous</a>
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Employee Number</th>
+              <th>Employee Name</th>
+              <th>Last Name</th>
+              <th>First Name</th>
+              <th>Effective Date</th>
+              <th>Expiration Date</th>
+              <th>Emp Payroll Status</th>
+              <th>Job Title</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="employee in filteredEmployees" :key="employee.id">
+              <td>{{ employee.employeeNumber }}</td>
+              <td>{{ employee.employeeName }}</td>
+              <td>{{ employee.lastName }}</td>
+              <td>{{ employee.firstName }}</td>
+              <td>{{ employee.effectiveDate }}</td>
+              <td>{{ employee.expirationDate }}</td>
+              <td>{{ employee.empPayrollStatus }}</td>
+              <td>{{ employee.jobTitle }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <nav v-if="totalPages > 1" class="mt-3">
+        <ul class="pagination pagination-sm justify-content-center">
+          <li class="page-item" :class="{ 'disabled': currentPage === 1 }">
+            <a class="page-link" href="#" @click="prevPage">
+              Previous
+            </a>
           </li>
-          <li v-for="page in visiblePages" :key="page" class="page-item" :class="{ active: currentPage === page }">
+          <li v-for="page in visiblePages" :key="page" class="page-item" :class="{ 'active': currentPage === page }">
             <a class="page-link" href="#" @click="gotoPage(page)">{{ page }}</a>
           </li>
-          <li class="page-item" :class="{ disabled: currentPage === totalPages }">
-            <a class="page-link" href="#" @click="nextPage">Next</a>
+          <li class="page-item" :class="{ 'disabled': currentPage === totalPages }">
+            <a class="page-link" href="#" @click="nextPage">
+              Next
+            </a>
           </li>
         </ul>
       </nav>
@@ -85,7 +147,6 @@ export default {
   data() {
     return {
       employeeDetails: {},
-      searchText: '',
       employees: [],
       currentPage: 1,
       itemsPerPage: 2
@@ -128,28 +189,11 @@ export default {
   methods: {
     fetchEmployees() {
       // Replace the URL with the actual API endpoint to fetch employee data
-      //'api/employees'
-      // fetch('api/employees.json')  // Replace 'path/to/employee-details.json' with the actual path to your JSON file
-      //   .then(response => response.json())
-      //   .then(data => {
-      //     this.employees = data;
-      //   })
-      //   .catch(error => {
-      //     console.error('Error:', error);
-      //   });
       this.employees = employees;
     },
     fetchEmployeeDetails() {
       // Replace the URL with the actual API endpoint to fetch employee details
-      // fetch('api/employee-details.json')
-      //   .then(response => response.json())
-      //   .then(data => {
-      //     this.employeeDetails = data;
-      //   })
-      //   .catch(error => {
-      //     console.error('Error:', error);
-      //   });
-        this.employeeDetails = employeeDetails;
+      this.employeeDetails = employeeDetails;
     },
     gotoPage(page) {
       if (page >= 1 && page <= this.totalPages) {
@@ -170,11 +214,79 @@ export default {
 };
 </script>
 
-<style>
-/* Add your styles here */
+<style scoped>
+/* Add your custom styles here */
 .table-container {
   margin-top: 20px;
 }
 
-/* Add any additional styles as needed */
+.pagination-details {
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.card-header {
+  background-color: #f8f9fa;
+  border-bottom: none;
+}
+
+.card-title {
+  margin-bottom: 0;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group.row {
+  align-items: center;
+}
+
+.col-form-label {
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.table-bordered th,
+.table-bordered td {
+  border: 1px solid #dee2e6;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #f9f9f9;
+}
+
+.pagination {
+  justify-content: center;
+}
+
+.pagination .page-item.disabled .page-link,
+.pagination .page-item.active .page-link {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.pagination .page-link {
+  color: #007bff;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  transition: all 0.3s;
+}
+
+.pagination .page-link:hover {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
 </style>
