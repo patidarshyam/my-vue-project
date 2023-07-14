@@ -1,3 +1,55 @@
+npm install export-from-json xlsx-populate
+
+
+import { exportFromJSON } from 'export-from-json';
+import XlsxPopulate from 'xlsx-populate';
+
+export default {
+  data() {
+    return {
+      data: {
+        // Your data properties
+      }
+    };
+  },
+  methods: {
+    async exportToExcel() {
+      const fileName = 'my_data.xlsx'; // Customize the filename here
+      const exportType = 'xlsx';
+
+      const worksheetData = await exportFromJSON({
+        data: this.data,
+        fileName,
+        exportType: 'json',
+        processor: (data) => {
+          return data;
+        }
+      });
+
+      const workbook = await XlsxPopulate.fromBlankAsync();
+      const sheet = workbook.sheet(0);
+      sheet.cell('A1').value(worksheetData);
+
+      const buffer = await workbook.outputAsync();
+
+      const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+      if (navigator.msSaveBlob) {
+        // For IE
+        navigator.msSaveBlob(blob, fileName);
+      } else {
+        // For other browsers
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = fileName;
+        link.click();
+        URL.revokeObjectURL(link.href);
+      }
+    }
+  }
+}
+
+============
 export const employees = [
     {
       id: 1,
