@@ -1,160 +1,263 @@
 <template>
-  <div>
-    <div class="card">
-      <div class="card-header">
-        <h5 class="card-title">Employee Details</h5>
-      </div>
+  <div class="card">
+    <div class="card-header">
+      <button class="accordion-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+        aria-expanded="true" aria-controls="collapseOne">
+        Hierarchy
+        <i class="bi bi-chevron-up"></i>
+      </button>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
       <div class="card-body">
         <div class="row">
           <div class="col-md-6">
-            <div class="form-group row">
-              <label for="domain" class="col-sm-4 col-form-label text-right">Domain:</label>
-              <div class="col-sm-8">
-                <input id="domain" :value="employeeDetails.domain" disabled class="form-control">
-              </div>
+            <div class="form-floating">
+              <input id="domain" :value="employeeDetails.domain" disabled class="form-control form-control-sm">
+              <label for="domain">Domain</label>
             </div>
-            <div class="form-group row">
-              <label for="group" class="col-sm-4 col-form-label text-right">Group:</label>
-              <div class="col-sm-8">
-                <input id="group" :value="employeeDetails.group" disabled class="form-control">
-              </div>
+            <div class="form-floating">
+              <input id="group" :value="employeeDetails.group" disabled class="form-control form-control-sm">
+              <label for="group">Group</label>
             </div>
-            <div class="form-group row">
-              <label for="division" class="col-sm-4 col-form-label text-right">Division:</label>
-              <div class="col-sm-8">
-                <input id="division" :value="employeeDetails.division" disabled class="form-control">
-              </div>
+            <div class="form-floating">
+              <input id="division" :value="employeeDetails.division" disabled class="form-control form-control-sm">
+              <label for="division">Division</label>
             </div>
-            <div class="form-group row">
-              <label for="area" class="col-sm-4 col-form-label text-right">Area:</label>
-              <div class="col-sm-8">
-                <input id="area" :value="employeeDetails.area" disabled class="form-control">
-              </div>
+            <div class="form-floating">
+              <input id="area" :value="employeeDetails.area" disabled class="form-control form-control-sm">
+              <label for="area">Area</label>
             </div>
-            <div class="form-group row">
-              <label for="type" class="col-sm-4 col-form-label text-right">Type:</label>
-              <div class="col-sm-8">
-                <input id="type" :value="employeeDetails.type" disabled class="form-control">
-              </div>
+            <div class="form-floating">
+              <input id="type" :value="employeeDetails.type" disabled class="form-control form-control-sm">
+              <label for="type">Type</label>
             </div>
-            <div class="form-group row">
-              <label for="category" class="col-sm-4 col-form-label text-right">Category:</label>
-              <div class="col-sm-8">
-                <input id="category" :value="employeeDetails.category" disabled class="form-control">
-              </div>
+            <div class="form-floating">
+              <input id="category" :value="employeeDetails.category" disabled class="form-control form-control-sm">
+              <label for="category">Category</label>
             </div>
           </div>
           <div class="col-md-6">
-            <div class="form-group row">
-              <label for="district" class="col-sm-4 col-form-label text-right">District:</label>
-              <div class="col-sm-8">
-                <input id="district" :value="employeeDetails.district" disabled class="form-control">
-              </div>
+            <div class="form-floating">
+              <input id="district" :value="employeeDetails.district" disabled class="form-control form-control-sm">
+              <label for="district">District</label>
             </div>
-            <div class="form-group row">
-              <label for="citySalesManager" class="col-sm-4 col-form-label text-right">City Sales Manager:</label>
-              <div class="col-sm-8">
-                <input id="citySalesManager" :value="employeeDetails.citySalesManager" disabled class="form-control">
-              </div>
+            <div class="form-floating">
+              <input id="citySalesManager" :value="employeeDetails.citySalesManager" disabled
+                class="form-control form-control-sm">
+              <label for="citySalesManager">City Sales Manager</label>
             </div>
-            <div class="form-group row">
-              <label for="zone" class="col-sm-4 col-form-label text-right">Zone:</label>
-              <div class="col-sm-8">
-                <input id="zone" :value="employeeDetails.zone" disabled class="form-control">
-              </div>
+            <div class="form-floating">
+              <input id="zone" :value="employeeDetails.zone" disabled class="form-control form-control-sm">
+              <label for="zone">Zone</label>
             </div>
-            <div class="form-group row">
-              <label for="specialRoles" class="col-sm-4 col-form-label text-right">Special Roles:</label>
-              <div class="col-sm-8">
-                <input id="specialRoles" :value="employeeDetails.specialRoles" disabled class="form-control">
-              </div>
+            <div class="form-floating">
+              <input id="specialRoles" :value="employeeDetails.specialRoles" disabled
+                class="form-control form-control-sm">
+              <label for="specialRoles">Special Roles</label>
             </div>
-            <div class="form-group row">
-              <label for="status" class="col-sm-4 col-form-label text-right">Status:</label>
-              <div class="col-sm-8">
-                <input id="status" :value="employeeDetails.status" disabled class="form-control">
-              </div>
+            <div class="form-floating">
+              <input id="status" :value="employeeDetails.status" disabled class="form-control form-control-sm">
+              <label for="status">Status</label>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="accordion" id="accordionExample">
+    <!-- Table 1 -->
+    <div class="card">
+      <div class="card-header" id="tableOneHeading">
+        <h5 class="mb-0">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTableOne"
+            aria-expanded="true" aria-controls="collapseTableOne">
+            <i class="bi bi-chevron-up"></i>
+            Employees
+          </button>
+        </h5>
+      </div>
+
+      <div id="collapseTableOne" class="collapse show" aria-labelledby="tableOneHeading"
+        data-bs-parent="#accordionExample">
+        <div class="card-body">
+          <!-- Table 1 content here -->
+          <div class="table-container mt-4">
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Employee Number</th>
+                    <th>Employee Name</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Effective Date</th>
+                    <th>Expiration Date</th>
+                    <th>Emp Payroll Status</th>
+                    <th>Job Title</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="employee in filteredEmployees" :key="employee.employeeNumber"  @click="openEmployeeSearchPopup(employee)">
+                    <td>{{ employee.employeeNumber }}</td>
+                    <td>{{ employee.employeeName }}</td>
+                    <td>{{ employee.firstName }}</td>
+                    <td>{{ employee.lastName }}</td>
+                    <td>{{ employee.effectiveDate }}</td>
+                    <td>{{ employee.expirationDate }}</td>
+                    <td>{{ employee.empPayrollStatus }}</td>
+                    <td>{{ employee.jobTitle }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <nav v-if="totalPages > 1" class="mt-3">
+              <div class="pagination-details" style="float: right;">
+                Page {{ currentPage }} of {{ totalPages }} ({{ totalItems }} items)
+              </div>
+              <div style="float: left;">
+                <ul class="pagination pagination-sm justify-content-center">
+                  <li class="page-item" :class="{ 'disabled': currentPage === 1 }">
+                    <a class="page-link" href="#" @click="prevPage">
+                      Previous
+                    </a>
+                  </li>
+                  <li v-for="page in visiblePages" :key="page" class="page-item"
+                    :class="{ 'active': currentPage === page }">
+                    <a class="page-link" href="#" @click="gotoPage(page)">{{ page }}</a>
+                  </li>
+                  <li class="page-item" :class="{ 'disabled': currentPage === totalPages }">
+                    <a class="page-link" href="#" @click="nextPage">
+                      Next
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+            </nav>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="table-container mt-4">
-      <div class="row">
-        <div class="col-md-4">
-          <h4>Employees</h4>
-        </div>
-        <div class="col-md-4">
-          <div class="pagination-details">
-            Page {{ currentPage }} of {{ totalPages }} ({{ totalItems }} items)
+    <!-- Table 2 -->
+    <div class="card">
+      <div class="card-header" id="tableTwoHeading">
+        <h5 class="mb-0">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseTableTwo" aria-expanded="false" aria-controls="collapseTableTwo">
+            <i class="bi bi-chevron-up"></i>
+            Admin Override Employees
+          </button>
+        </h5>
+      </div>
+
+      <div id="collapseTableTwo" class="collapse" aria-labelledby="tableTwoHeading" data-bs-parent="#accordionExample">
+        <div class="card-body">
+          <!-- Table 2 content here -->
+          <div class="table-container mt-4">
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Employee Number</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Effective Date</th>
+                    <th>Cost Center Code</th>
+                    <th>Job Title</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="employeeAdmin in filteredAdminEmployees" :key="employeeAdmin.employeeNumber">
+                    <td>{{ employeeAdmin.employeeNumber }}</td>
+                    <td>{{ employeeAdmin.employeeFirstName }}</td>
+                    <td>{{ employeeAdmin.employeeLastName }}</td>
+                    <td>{{ employeeAdmin.effectiveDate }}</td>
+                    <td>{{ employeeAdmin.adminCostCenterCode }}</td>
+                    <td>{{ employeeAdmin.jobTitle }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <nav v-if="totalAPages > 1" class="mt-3">
+              <div class="pagination-details" style="float: left;">
+                Page {{ currentAPage }} of {{ totalAPages }} ({{ totalAItems }} items)
+              </div>
+              <div style="float: left;">
+                <ul class="pagination pagination-sm justify-content-center">
+                  <li class="Page-item" :class="{ 'disabled': currentAPage === 1 }">
+                    <a class="Page-link" href="#" @click="prevAPage">
+                      Previous
+                    </a>
+                  </li>
+                  <li v-for="Page in visibleAPages" :key="Page" class="Page-item"
+                    :class="{ 'active': currentAPage === Page }">
+                    <a class="Page-link" href="#" @click="gotoAPage(Page)">{{ Page }}</a>
+                  </li>
+                  <li class="Page-item" :class="{ 'disabled': currentAPage === totalAPages }">
+                    <a class="Page-link" href="#" @click="nextAPage">
+                      Next
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
           </div>
         </div>
       </div>
-      <div class="table-responsive">
-        <table class="table table-bordered table-striped">
-          <thead>
-            <tr>
-              <th>Employee Number</th>
-              <th>Employee Name</th>
-              <th>Last Name</th>
-              <th>First Name</th>
-              <th>Effective Date</th>
-              <th>Expiration Date</th>
-              <th>Emp Payroll Status</th>
-              <th>Job Title</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="employee in filteredEmployees" :key="employee.id">
-              <td>{{ employee.employeeNumber }}</td>
-              <td>{{ employee.employeeName }}</td>
-              <td>{{ employee.lastName }}</td>
-              <td>{{ employee.firstName }}</td>
-              <td>{{ employee.effectiveDate }}</td>
-              <td>{{ employee.expirationDate }}</td>
-              <td>{{ employee.empPayrollStatus }}</td>
-              <td>{{ employee.jobTitle }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <nav v-if="totalPages > 1" class="mt-3">
-        <ul class="pagination pagination-sm justify-content-center">
-          <li class="page-item" :class="{ 'disabled': currentPage === 1 }">
-            <a class="page-link" href="#" @click="prevPage">
-              Previous
-            </a>
-          </li>
-          <li v-for="page in visiblePages" :key="page" class="page-item" :class="{ 'active': currentPage === page }">
-            <a class="page-link" href="#" @click="gotoPage(page)">{{ page }}</a>
-          </li>
-          <li class="page-item" :class="{ 'disabled': currentPage === totalPages }">
-            <a class="page-link" href="#" @click="nextPage">
-              Next
-            </a>
-          </li>
-        </ul>
-      </nav>
     </div>
   </div>
+
+ 
 </template>
+
 
 <script>
 import { employees } from './employee.js';
 import { employeeDetails } from './employee-details.js';
+
+
 export default {
+ 
   data() {
     return {
+      showModal: false,
+      searchCriteria: {
+        lastName: '',
+        firstName: '',
+        employeeNumber: ''
+      },
       employeeDetails: {},
       employees: [],
       currentPage: 1,
-      itemsPerPage: 2
+      itemsPerPage: 2,
+      dropdownOptions: { "name1": "country1", "name2": "country2" }, // Array to store the dropdown options
+      selectedOption: null, // Data property to store the selected option
     };
   },
   mounted() {
     this.fetchEmployeeDetails();
     this.fetchEmployees();
+    this.fetchDropdownOptions();
+
+     // Retrieve the employeeNumber parameter from the URL query
+  const employeeNumber = this.$route.query.employeeNumber;
+
+  // If employeeNumber exists, fetch the employee details and set them to the form fields
+  if (employeeNumber) {
+    // Fetch the employee details using the employeeNumber
+    this.fetchEmployeeDetails(employeeNumber).then(employee => {
+      // Set the employee details to the form fields
+      this.searchCriteria.lastName = employee.lastName;
+      this.searchCriteria.firstName = employee.firstName;
+      this.searchCriteria.employeeNumber = employee.employeeNumber;
+    }).catch(error => {
+      console.error('Error fetching employee details:', error);
+    });
+  }
   },
   computed: {
     filteredEmployees() {
@@ -187,6 +290,24 @@ export default {
     }
   },
   methods: {
+    openEmployeeSearchPopup(employee) {
+    const employeeNumber = employee.employeeNumber;
+    const url = `#/employee-search?employeeNumber=${employeeNumber}`;
+    const popup = window.open(url, '_blank', 'width=800,height=600');
+    if (popup) {
+      popup.focus();
+    } else {
+      console.error('Failed to open popup window');
+    }
+  },
+    async fetchDropdownOptions() {
+      try {
+        //const response = await axios.get('your_api_endpoint'); // Replace 'your_api_endpoint' with the actual API endpoint URL
+        //this.dropdownOptions = Object.values(response.data); // Assuming the API response is an object with key-value pairs
+      } catch (error) {
+        console.error('Error fetching dropdown options:', error);
+      }
+    },
     fetchEmployees() {
       // Replace the URL with the actual API endpoint to fetch employee data
       this.employees = employees;
@@ -209,13 +330,13 @@ export default {
       if (this.currentPage < this.totalPages) {
         this.currentPage++;
       }
-    }
+    },
+
   }
 };
 </script>
 
 <style scoped>
-/* Add your custom styles here */
 .table-container {
   margin-top: 20px;
 }
@@ -287,6 +408,4 @@ export default {
   color: #fff;
   background-color: #007bff;
   border-color: #007bff;
-}
-
-</style>
+}</style>
