@@ -100,7 +100,8 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="employee in filteredEmployees" :key="employee.employeeNumber"  @click="openEmployeeSearchPopup(employee)">
+                  <tr v-for="employee in filteredEmployees" :key="employee.employeeNumber"
+                    @click="openEmployeeSearchPopup(employee)">
                     <td>{{ employee.employeeNumber }}</td>
                     <td>{{ employee.employeeName }}</td>
                     <td>{{ employee.firstName }}</td>
@@ -211,20 +212,24 @@
     </div>
   </div>
 
- 
+  <!-- <popup-modal :visible="modalVisible" :rowData="selectedRowData" /> -->
+  <popup-modal :visible="modalVisible" :rowData="selectedRowData" @close="modalVisible = false" />
 </template>
 
 
 <script>
 import { employees } from './employee.js';
 import { employeeDetails } from './employee-details.js';
-
+import PopupModal from './PopupModal.vue';
 
 export default {
- 
+  components: {
+    PopupModal,
+  },
   data() {
     return {
       showModal: false,
+      modalVisible: false,
       searchCriteria: {
         lastName: '',
         firstName: '',
@@ -242,22 +247,6 @@ export default {
     this.fetchEmployeeDetails();
     this.fetchEmployees();
     this.fetchDropdownOptions();
-
-     // Retrieve the employeeNumber parameter from the URL query
-  const employeeNumber = this.$route.query.employeeNumber;
-
-  // If employeeNumber exists, fetch the employee details and set them to the form fields
-  if (employeeNumber) {
-    // Fetch the employee details using the employeeNumber
-    this.fetchEmployeeDetails(employeeNumber).then(employee => {
-      // Set the employee details to the form fields
-      this.searchCriteria.lastName = employee.lastName;
-      this.searchCriteria.firstName = employee.firstName;
-      this.searchCriteria.employeeNumber = employee.employeeNumber;
-    }).catch(error => {
-      console.error('Error fetching employee details:', error);
-    });
-  }
   },
   computed: {
     filteredEmployees() {
@@ -291,15 +280,10 @@ export default {
   },
   methods: {
     openEmployeeSearchPopup(employee) {
-    const employeeNumber = employee.employeeNumber;
-    const url = `#/employee-search?employeeNumber=${employeeNumber}`;
-    const popup = window.open(url, '_blank', 'width=800,height=600');
-    if (popup) {
-      popup.focus();
-    } else {
-      console.error('Failed to open popup window');
-    }
-  },
+
+      this.selectedRowData = employee;
+      this.modalVisible = true;
+    },
     async fetchDropdownOptions() {
       try {
         //const response = await axios.get('your_api_endpoint'); // Replace 'your_api_endpoint' with the actual API endpoint URL
@@ -408,4 +392,5 @@ export default {
   color: #fff;
   background-color: #007bff;
   border-color: #007bff;
-}</style>
+}
+</style>
