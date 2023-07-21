@@ -1,0 +1,35 @@
+<template>
+  <div>
+    <!-- Collapse Table One -->
+    <b-button @click="toggleCollapse('collapseTableOne')">Toggle Collapse One</b-button>
+    <b-collapse v-model="collapseTableOne">
+      <!-- Table One Content Here -->
+    </b-collapse>
+
+    <!-- Collapse Table Two -->
+    <b-button @click="toggleCollapse('collapseTableTwo')">Toggle Collapse Two</b-button>
+    <b-collapse v-model="collapseTableTwo">
+      <!-- Table Two Content Here -->
+    </b-collapse>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      collapseTableOne: false,
+      collapseTableTwo: false,
+    };
+  },
+  methods: {
+    toggleCollapse(collapseName) {
+      if (collapseName === 'collapseTableOne') {
+        this.collapseTableOne = !this.collapseTableOne;
+      } else if (collapseName === 'collapseTableTwo') {
+        this.collapseTableTwo = !this.collapseTableTwo;
+      }
+    },
+  },
+};
+</script>
