@@ -33,3 +33,61 @@ export default {
   },
 };
 </script>
+
+---------------
+<template>
+  <div class="card">
+    <!-- Collapse Table One -->
+    <div class="card-header" id="tableOneHeading">
+      <h5 class="mb-0">
+        <button class="accordion-button" type="button" @click="toggleCollapse('collapseTableOne')" :aria-expanded="collapseTableOne" aria-controls="collapseTableOne">
+          <i :class="collapseTableOne ? 'bi bi-chevron-up' : 'bi bi-chevron-down'"></i>
+          Gems Employee Details
+        </button>
+      </h5>
+    </div>
+
+    <div :class="['collapse', {'show': collapseTableOne}]" id="collapseTableOne" aria-labelledby="tableOneHeading" data-bs-parent="#accordionExample">
+      <!-- Table One Content Here -->
+      <!-- Add your content here for Table One -->
+    </div>
+  </div>
+
+  <!-- Collapse Table Two -->
+  <div class="card">
+    <div class="card-header" id="tableTwoHeading">
+      <h5 class="mb-0">
+        <button class="accordion-button" type="button" @click="toggleCollapse('collapseTableTwo')" :aria-expanded="collapseTableTwo" aria-controls="collapseTableTwo">
+          <i :class="collapseTableTwo ? 'bi bi-chevron-up' : 'bi bi-chevron-down'"></i>
+          Table Two
+        </button>
+      </h5>
+    </div>
+
+    <div :class="['collapse', {'show': collapseTableTwo}]" id="collapseTableTwo" aria-labelledby="tableTwoHeading" data-bs-parent="#accordionExample">
+      <!-- Table Two Content Here -->
+      <!-- Add your content here for Table Two -->
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      collapseTableOne: true,
+      collapseTableTwo: true,
+    };
+  },
+  methods: {
+    toggleCollapse(collapseName) {
+      if (collapseName === 'collapseTableOne') {
+        this.collapseTableOne = !this.collapseTableOne;
+      } else if (collapseName === 'collapseTableTwo') {
+        this.collapseTableTwo = !this.collapseTableTwo;
+      }
+    },
+  },
+};
+</script>
+
