@@ -70,6 +70,26 @@ export default {
         alert('API call to save data:\n' + JSON.stringify(employee));
         employee.editing = false; // Set the editing flag to false after saving
       }, 500);
+
+ saveData() {
+    // Create an array to store the employee data in 'employeedto' format
+    const employeeDataToUpdate = [];
+
+    // Map each employee object to the 'employeedto' format and add to the array
+    for (const employee of this.employees) {
+      const employeedto = {
+        employeeNumber: employee.employeeNumber,
+        costCenterCode: employee.costCenterCode,
+        jobTitle: employee.jobTitle,
+        type: employee.type,
+        description: employee.description,
+        effectiveDate: employee.effectiveDate,
+        expirationDate: employee.expirationDate,
+        // Add any other properties if needed
+      };
+
+      employeeDataToUpdate.push(employeedto);
+    }
     },
     cancelEdit(employee) {
       // Set the editing flag to false to cancel the edit and revert back to display mode
