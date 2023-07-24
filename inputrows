@@ -1,82 +1,84 @@
 <template>
-  <div>
-    <table>
-      <thead>
-        <tr>
-          <th v-for="column in columns" :key="column">{{ column }}</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(row, rowIndex) in tableData" :key="rowIndex">
-          <td v-for="(column, colIndex) in columns" :key="colIndex">
-            <input v-model="row[column]" />
-          </td>
-          <td>
-            <template v-if="row.new">
-              <button @click="saveRow(rowIndex)">Save</button>
-              <button @click="cancelRow(rowIndex)">Cancel</button>
-            </template>
-            <template v-else>
-              <button @click="updateRow(rowIndex)">Update</button>
-            </template>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <button @click="addRow">Add Row</button>
+  <div class="table-container">
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Cost Center</th>
+            <th>Job Title</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Effective Date</th>
+            <th>Expiration Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(employee, rowIndex) in filteredEmployees" :key="employee.employeeNumber">
+            <td>
+              <input v-model="employee.costCenterCode" class="form-control form-control-sm" />
+            </td>
+            <td>
+              <input v-model="employee.jobTitle" class="form-control form-control-sm" />
+            </td>
+            <td>
+              <input v-model="employee.type" class="form-control form-control-sm" />
+            </td>
+            <td>
+              <input v-model="employee.description" class="form-control form-control-sm" />
+            </td>
+            <td>
+              <input v-model="employee.effectiveDate" class="form-control form-control-sm" />
+            </td>
+            <td>
+              <input v-model="employee.expirationDate" class="form-control form-control-sm" />
+            </td>
+            <td>
+              <template v-if="employee.editing">
+                <button @click="saveEmployee(employee)">Save</button>
+                <button @click="cancelEdit(employee)">Cancel</button>
+              </template>
+              <template v-else>
+                <button @click="editEmployee(employee)">Edit</button>
+              </template>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
+  props: {
+    // ... Other props ...
+  },
   data() {
     return {
-      columns: ['Name', 'Age', 'Address'], // Add more columns if needed
-      tableData: [],
+      // ... Other data ...
     };
   },
-  mounted() {
-    // Initialize table data with prefilled values (Example data)
-    this.tableData = [
-      { Name: 'John', Age: 30, Address: '123 Main St' },
-      { Name: 'Jane', Age: 25, Address: '456 Elm St' },
-      // Add more rows if needed
-    ];
-  },
   methods: {
-    addRow() {
-      // Add a new row to the tableData array
-      const newRow = {};
-      this.columns.forEach((column) => {
-        newRow[column] = '';
-      });
-      newRow.new = true; // Mark the row as new
-      this.tableData.push(newRow);
+    editEmployee(employee) {
+      employee.editing = true; // Set the editing flag to true to show input fields
     },
-    saveRow(rowIndex) {
-      // API call to save data for the specific new row
-      const newRowData = this.tableData[rowIndex];
-      // Perform API call with newRowData
+    saveEmployee(employee) {
+      // API call to save the updated data for the employee
       // Replace the below setTimeout with your actual API call
       setTimeout(() => {
-        alert('API call to save data:\n' + JSON.stringify(newRowData));
-        newRowData.new = false; // Mark the row as not new after saving
+        alert('API call to save data:\n' + JSON.stringify(employee));
+        employee.editing = false; // Set the editing flag to false after saving
       }, 500);
     },
-    updateRow(rowIndex) {
-      // API call to update data for the specific row
-      const rowData = this.tableData[rowIndex];
-      // Perform API call with rowData
-      // Replace the below setTimeout with your actual API call
-      setTimeout(() => {
-        alert('API call to update data:\n' + JSON.stringify(rowData));
-      }, 500);
-    },
-    cancelRow(rowIndex) {
-      // Remove the newly added row from the tableData array
-      this.tableData.splice(rowIndex, 1);
+    cancelEdit(employee) {
+      // Set the editing flag to false to cancel the edit and revert back to display mode
+      employee.editing = false;
     },
   },
 };
 </script>
+
+<style scoped>
+/* ... Your existing CSS styles ... */
+</style>
