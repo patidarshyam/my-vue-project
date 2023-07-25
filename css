@@ -139,3 +139,43 @@ export default {
   box-shadow: none;
 }
 </style>
+=========nav bar========
+<template>
+  <nav
+    ref="header"
+    class="navbar text-white navbar-expand-lg navbar-light bg-primary sticky-top p-0"
+    style="--bs-primary-rgb: 54, 85, 179"
+  >
+    <!-- Navigation bar content... -->
+  </nav>
+  <!-- Rest of the code... -->
+</template>
+
+<script>
+// JavaScript code...
+</script>
+
+<style>
+/* Basic styling for the navigation bar */
+.navbar {
+  /* Add any common styles here... */
+}
+
+/* Styles for desktop */
+@media (min-width: 1024px) {
+  .navbar {
+    padding: 1rem; /* Increase padding for better spacing on desktop */
+  }
+}
+
+/* Styles for tablet */
+@media (max-width: 1023px) {
+  .navbar {
+    padding: 0.5rem; /* Reduce padding for better spacing on tablet */
+  }
+}
+
+/* Add any other styles specific to the navigation bar here... */
+</style>
+
+=============
