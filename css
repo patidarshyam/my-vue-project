@@ -1,34 +1,141 @@
 <template>
-  <div>
-    <!-- ... Your page content ... -->
+  <div class="employee-search-modal" v-if="visible">
+    <div :class="['modal-container', { 'ipad-mode': isIPad }]">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button class="modal-close" @click="closeModal">×</button>
+        </div>
+        <EmployeeSearch :lastName="searchCriteria.lastName" :firstName="searchCriteria.firstName" :employeeNumber="searchCriteria.employeeNumber" />
 
-    <!-- Modal -->
-    <div class="modal" :class="{ 'modal-center': isDesktopMode, 'modal-right': isIPadMode }">
-      <!-- Modal content -->
+        <div class="modal-footer">
+          <button class="btn btn-primary" @click="closeModal">Close</button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
-<style>
-/* Common styles for the modal */
-.modal {
+<script>
+import EmployeeSearch from './EmployeeSearchPopUp.vue'
+export default {
+  props: {
+    visible: Boolean, // Prop to control the visibility of the modal
+    searchCriteria: Object
+  },
+  components: {
+    EmployeeSearch
+  },
+  computed: {
+    isIPad() {
+      // Check if the device is an iPad based on screen size
+      return window.innerWidth <= 1024;
+    }
+  },
+  methods: {
+    closeModal() {
+      this.$emit('close')
+    },
+  }
+}
+</script>
+
+<style scoped>
+/* Basic styling to make sure the modal is visible */
+.employee-search-modal {
   position: fixed;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  /* Add other modal styles here */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Styles for desktop mode */
-@media (min-width: 1024px) {
-  .modal-center {
-    left: 50%;
-  }
+.modal-container {
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Semi-transparent background */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Styles for iPad mode */
-@media (max-width: 1023px) {
-  .modal-right {
-    right: 20px; /* Adjust the value to position the modal as desired */
-  }
+/* Additional style for iPad mode */
+.ipad-mode .modal-container {
+  justify-content: flex-end;
+}
+
+.modal-content {
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  max-width: 550px;
+  width: 100%;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* padding: 16px; */
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #ddd;
+}
+
+.modal-title {
+  margin: 0;
+}
+
+.modal-close {
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: bold;
+  color: #888;
+  border: none;
+  background-color: transparent;
+}
+
+.modal-close:hover {
+  color: #555;
+}
+
+.modal-body {
+   padding: 16px; 
+}
+
+.modal-footer {
+  padding: 5px 16px 5px 5px;
+  
+  text-align: right;
+  background-color: #f5f5f5;
+}
+
+.btn {
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-primary:focus {
+  box-shadow: none;
 }
 </style>
