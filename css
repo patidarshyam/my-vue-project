@@ -1,0 +1,34 @@
+<template>
+  <div>
+    <!-- ... Your page content ... -->
+
+    <!-- Modal -->
+    <div class="modal" :class="{ 'modal-center': isDesktopMode, 'modal-right': isIPadMode }">
+      <!-- Modal content -->
+    </div>
+  </div>
+</template>
+
+<style>
+/* Common styles for the modal */
+.modal {
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  /* Add other modal styles here */
+}
+
+/* Styles for desktop mode */
+@media (min-width: 1024px) {
+  .modal-center {
+    left: 50%;
+  }
+}
+
+/* Styles for iPad mode */
+@media (max-width: 1023px) {
+  .modal-right {
+    right: 20px; /* Adjust the value to position the modal as desired */
+  }
+}
+</style>
