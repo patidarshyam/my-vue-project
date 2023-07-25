@@ -1,164 +1,10 @@
 <template>
-  <div class="employee-search-modal" v-if="visible">
-    <div :class="['modal-container', { 'ipad-mode': isIPad }]">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button class="modal-close" @click="closeModal">×</button>
-        </div>
-        <EmployeeSearch :lastName="searchCriteria.lastName" :firstName="searchCriteria.firstName" :employeeNumber="searchCriteria.employeeNumber" />
-
-        <div class="modal-footer">
-          <button class="btn btn-primary" @click="closeModal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
-
-<script>
-import EmployeeSearch from './EmployeeSearchPopUp.vue'
-export default {
-  props: {
-    visible: Boolean, // Prop to control the visibility of the modal
-    searchCriteria: Object
-  },
-  components: {
-    EmployeeSearch
-  },
-  computed: {
-    isIPad() {
-      // Check if the device is an iPad based on screen size
-      return window.innerWidth <= 1024;
-    }
-  },
-  methods: {
-    closeModal() {
-      this.$emit('close')
-    },
-  }
-}
-</script>
-
-<style scoped>
-/* Basic styling to make sure the modal is visible */
-.employee-search-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.modal-container {
-  background-color: rgba(0, 0, 0, 0.5);
-  /* Semi-transparent background */
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Additional style for iPad mode */
-.ipad-mode .modal-container {
-  justify-content: flex-end;
-}
-
-.modal-content {
-  background-color: #fff;
-  border-radius: 4px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  max-width: 550px;
-  width: 100%;
-}
-
-.modal-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  /* padding: 16px; */
-  background-color: #f5f5f5;
-  border-bottom: 1px solid #ddd;
-}
-
-.modal-title {
-  margin: 0;
-}
-
-.modal-close {
-  cursor: pointer;
-  font-size: 24px;
-  font-weight: bold;
-  color: #888;
-  border: none;
-  background-color: transparent;
-}
-
-.modal-close:hover {
-  color: #555;
-}
-
-.modal-body {
-   padding: 16px; 
-}
-
-.modal-footer {
-  padding: 5px 16px 5px 5px;
-  
-  text-align: right;
-  background-color: #f5f5f5;
-}
-
-.btn {
-  display: inline-block;
-  padding: 8px 16px;
-  font-size: 14px;
-  font-weight: bold;
-  text-align: center;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.btn-primary {
-  background-color: #007bff;
-  color: #fff;
-}
-
-.btn-primary:hover {
-  background-color: #0056b3;
-}
-
-.btn-primary:focus {
-  box-shadow: none;
-}
-</style>
-=========nav bar========
-<template>
   <!-- Navigation bar code... -->
-  <nav ref="header" class="navbar text-white navbar-expand-lg navbar-light bg-primary sticky-top p-0" style="--bs-primary-rgb: 54, 85, 179">
-    <!-- Navigation bar content... -->
-  </nav>
-
-  <div class="d-flex overflow-auto" :class="{ 'mini-variant': !isShow, 'expand-view': isShow, loader: loader }" style="--bs-gutter-x: 0; height: calc(100vh - 3.9rem)">
-    <div class="side-nav" ref="menu" :class="{ 'collapsed': !isShow }">
-      <button class="toggle-btn" @click="toggleSideNav">
-        <i :class="isShow ? 'fa fa-angle-double-left' : 'fa fa-angle-double-right'"></i>
-      </button>
-      <!-- Side navigation content... -->
-    </div>
-    <!-- Rest of the code... -->
-  </div>
+  <!-- Rest of the template code... -->
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 
 export default {
   // Component code...
@@ -169,95 +15,26 @@ export default {
       isShow.value = !isShow.value;
     };
 
-    return {
-      isShow,
-      toggleSideNav,
+    // Function to check if the window width is in desktop range
+    const isDesktop = () => {
+      return window.innerWidth >= 1024; // You can adjust this value for different screen sizes
     };
-  },
-};
-</script>
 
-<style>
-/* Basic styling for the side navigation */
-.side-nav {
-  /* Add any common styles here... */
-}
-
-/* Styles for desktop */
-@media (min-width: 1024px) {
-  .side-nav {
-    width: 12rem; /* Adjust width for desktop */
-  }
-}
-
-/* Styles for tablet */
-@media (max-width: 1023px) {
-  .side-nav {
-    width: 8rem; /* Adjust width for tablet */
-  }
-}
-
-.collapsed {
-  width: 4rem; /* Collapsed width */
-}
-
-/* Add any other styles specific to the side navigation here... */
-
-/* Styles for the toggle button */
-.toggle-btn {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 4rem;
-  height: 3.9rem;
-  background-color: var(--bs-primary);
-  color: #fff;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-}
-
-.toggle-btn:hover {
-  background-color: #123;
-}
-</style>
-
-
-=============
-<template>
-  <!-- Navigation bar code... -->
-  <nav ref="header" class="navbar text-white navbar-expand-lg navbar-light bg-primary sticky-top p-0" style="--bs-primary-rgb: 54, 85, 179">
-    <!-- Navigation bar content... -->
-  </nav>
-
-  <div class="d-flex overflow-auto" :class="{ 'mini-variant': !isShow, 'expand-view': isShow, loader: loader }" style="--bs-gutter-x: 0; height: calc(100vh - 3.9rem)">
-    <div class="side-nav" ref="menu" :class="{ 'collapsed': !isShow }">
-      <button class="toggle-btn" @click="toggleSideNav">
-        <i :class="isShow ? 'fa fa-angle-double-left' : 'fa fa-angle-double-right'"></i>
-      </button>
-      <div class="side-nav-content">
-        <!-- Side navigation content... -->
-      </div>
-    </div>
-    <!-- Rest of the code... -->
-  </div>
-</template>
-
-<script>
-import { ref } from 'vue';
-
-export default {
-  // Component code...
-  setup() {
-    const isShow = ref(true);
-
-    const toggleSideNav = () => {
-      isShow.value = !isShow.value;
+    // Function to handle window resize event
+    const handleResize = () => {
+      isShow.value = isDesktop();
     };
+
+    // Add event listener for window resize
+    onMounted(() => {
+      window.addEventListener('resize', handleResize);
+      handleResize(); // Initial check on mount
+    });
+
+    // Remove event listener on component unmount
+    onUnmounted(() => {
+      window.removeEventListener('resize', handleResize);
+    });
 
     return {
       isShow,
@@ -266,71 +43,3 @@ export default {
   },
 };
 </script>
-
-<style>
-/* Basic styling for the side navigation */
-.side-nav {
-  position: relative;
-  transition: width 0.3s linear;
-  /* Add any other common styles here... */
-}
-
-.side-nav-content {
-  /* Add styles for side navigation content here... */
-  padding: 1rem;
-}
-
-/* Styles for desktop */
-@media (min-width: 1024px) {
-  .side-nav {
-    width: 12rem; /* Adjust width for desktop */
-  }
-
-  .side-nav.collapsed {
-    width: 4rem; /* Collapsed width for desktop */
-  }
-}
-
-/* Styles for tablet */
-@media (max-width: 1023px) {
-  .side-nav {
-    width: 8rem; /* Adjust width for tablet */
-  }
-
-  .side-nav.collapsed {
-    width: 4rem; /* Collapsed width for tablet */
-  }
-}
-
-/* Add any other styles specific to the side navigation here... */
-
-/* Styles for the toggle button */
-.toggle-btn {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 4rem;
-  height: 3.9rem;
-  background-color: var(--bs-primary);
-  color: #fff;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-}
-
-.toggle-btn:hover {
-  background-color: #123;
-}
-
-/* Styles for side-nav-content when the side-nav is collapsed */
-.side-nav.collapsed .side-nav-content {
-  display: none;
-}
-
-/* Add any other styles for side-nav-content here... */
-</style>
-===============
