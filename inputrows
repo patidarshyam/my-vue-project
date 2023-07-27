@@ -115,8 +115,8 @@ onDatePickerUpdate(employee, field) {
         jobTitle: employee.jobTitle,
         type: employee.type,
         description: employee.description,
-        effectiveDate: employee.effectiveDate,
-        expirationDate: employee.expirationDate,
+          effectiveDate: new Date(employee.effectiveDate).toLocaleDateString('en-CA'),
+          expirationDate: new Date(employee.expirationDate).toLocaleDateString('en-CA'),
         // Add any other properties if needed
       };
 
