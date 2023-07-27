@@ -30,6 +30,12 @@
             <td>
               <Datepicker v-model="employeeAdmin.effectiveDate" class="form-control form-control-sm" />
             </td>
+ <td>
+              <el-date-picker v-model="employee.effectiveDate" type="date" :picker-options="datePickerOptions" />
+            </td>
+            <td>
+              <el-date-picker v-model="employee.expirationDate" type="date" :picker-options="datePickerOptions" />
+            </td>
             <td>
               <input v-model="employee.expirationDate" class="form-control form-control-sm" />
             </td>
@@ -52,16 +58,22 @@
 <script>
 
 import Datepicker from 'vue-datepicker';
+import { DatePicker } from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css'; // Import the Element UI styles
 
 export default {
   props: {
     // ... Other props ...
   },
 components: {
-    Datepicker,
+    //Datepicker,
+[DatePicker.name]: DatePicker,
   },
   data() {
     return {
+datePickerOptions: {
+        format: 'yyyy-MM-dd', // Set the date format to 'yyyy-MM-dd'
+      },
       // ... Other data ...
     };
   },
