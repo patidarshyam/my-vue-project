@@ -28,7 +28,7 @@
               <input v-model="employee.description" class="form-control form-control-sm" />
             </td>
             <td>
-              <input v-model="employee.effectiveDate" class="form-control form-control-sm" />
+              <Datepicker v-model="employeeAdmin.effectiveDate" class="form-control form-control-sm" />
             </td>
             <td>
               <input v-model="employee.expirationDate" class="form-control form-control-sm" />
@@ -50,9 +50,15 @@
 </template>
 
 <script>
+
+import Datepicker from 'vue-datepicker';
+
 export default {
   props: {
     // ... Other props ...
+  },
+components: {
+    Datepicker,
   },
   data() {
     return {
