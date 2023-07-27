@@ -34,7 +34,12 @@
               <el-date-picker v-model="employee.effectiveDate" type="date" :picker-options="datePickerOptions" />
             </td>
             <td>
-              <el-date-picker v-model="employee.expirationDate" type="date" :picker-options="datePickerOptions" />
+              <v-date-picker
+                v-model="employee.expirationDate"
+                is-inline
+                :attributes="datePickerOptions"
+                @update:modelValue="onDatePickerUpdate(employee, 'expirationDate')"
+              ></v-date-picker>
             </td>
             <td>
               <input v-model="employee.expirationDate" class="form-control form-control-sm" />
@@ -61,6 +66,9 @@ import Datepicker from 'vue-datepicker';
 import { DatePicker } from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css'; // Import the Element UI styles
 
+import { ref } from 'vue';
+import { DatePicker as VDatePicker } from 'v-calendar';
+
 export default {
   props: {
     // ... Other props ...
@@ -68,6 +76,7 @@ export default {
 components: {
     //Datepicker,
 [DatePicker.name]: DatePicker,
+  VDatePicker,
   },
   data() {
     return {
@@ -78,6 +87,11 @@ datePickerOptions: {
     };
   },
   methods: {
+onDatePickerUpdate(employee, field) {
+      // Handler for v-calendar date picker updates
+      // Update the employee's "effectiveDate" field with the selected date
+      employee.effectiveDate = this.$refs.calendar.internalModel[0].value;
+    },
     editEmployee(employee) {
       employee.editing = true; // Set the editing flag to true to show input fields
     },
