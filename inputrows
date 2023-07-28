@@ -16,7 +16,7 @@
         <tbody>
           <tr v-for="(employee, rowIndex) in filteredEmployees" :key="employee.employeeNumber">
             <td>
-              <input v-model="employee.costCenterCode" class="form-control form-control-sm" />
+              <input v-model="employee.costCenterCode" class="form-control form-control-sm" @focusout="onCostCenterCodeFocusOut(employee)"/>
             </td>
             <td>
               <input v-model="employee.jobTitle" class="form-control form-control-sm" />
