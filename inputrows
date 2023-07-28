@@ -134,3 +134,55 @@ onDatePickerUpdate(employee, field) {
 <style scoped>
 /* ... Your existing CSS styles ... */
 </style>
+
+==============================
+<template>
+  <!-- ... Your existing template ... -->
+</template>
+
+<script>
+import { ref } from 'vue';
+import Datepicker from 'vue3-datepicker';
+
+export default {
+  props: {
+    // ... Other props ...
+  },
+  components: {
+    Datepicker,
+  },
+  data() {
+    return {
+      // ... Other data ...
+    };
+  },
+  methods: {
+    // ... Your existing methods ...
+  },
+  watch: {
+    // Watch for changes in the costCenterCode property of each employee
+    'filteredEmployees': {
+      deep: true,
+      handler(newValue, oldValue) {
+        for (const employee of newValue) {
+          if (employee.costCenterCode && employee.costCenterCode !== oldValue.costCenterCode) {
+            // Make an API call to fetch the costCenterName based on costCenterCode
+            // Replace 'apiEndpoint' with your actual API endpoint
+            fetch(`apiEndpoint/${employee.costCenterCode}`)
+              .then(response => response.json())
+              .then(data => {
+                // Assuming your API response has a property 'costCenterName'
+                // Update the costCenterName in the employee object
+                employee.costCenterName = data.costCenterName;
+              })
+              .catch(error => {
+                console.error('Error fetching costCenterName:', error);
+              });
+          }
+        }
+      },
+    },
+  },
+};
+</script>
+
